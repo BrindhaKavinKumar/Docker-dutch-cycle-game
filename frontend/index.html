@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cycle Through Holland</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <h1>Cycle Through Holland</h1>
+      <p>Collect stroopwafels, ride through tulip fields, and top the leaderboard.</p>
+    </header>
+
+    <main class="game-layout">
+      <section class="game-panel">
+        <div class="hud">
+          <div class="hud-card">
+            <span class="label">Player</span>
+            <input id="playerName" type="text" placeholder="Enter your name" maxlength="20" />
+          </div>
+
+          <div class="hud-card">
+            <span class="label">Score</span>
+            <span id="scoreValue">0</span>
+          </div>
+
+          <div class="hud-card">
+            <span class="label">Time</span>
+            <span id="timerValue">30</span>
+          </div>
+
+          <button id="startBtn">Start Ride</button>
+        </div>
+
+        <canvas id="game" width="900" height="500"></canvas>
+
+        <div class="controls">
+          Use arrow keys to move. Collect all stroopwafels before time runs out.
+        </div>
+      </section>
+
+      <aside class="leaderboard-panel">
+        <h2>Leaderboard</h2>
+        <p class="board-subtitle">Top riders in Holland</p>
+        <ol id="leaderboard"></ol>
+      </aside>
+    </main>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
