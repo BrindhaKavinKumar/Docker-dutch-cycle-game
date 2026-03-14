@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_USER = "yourdockerhubusername"
+        DOCKER_USER = "brindhakavinkumar"
     }
 
     stages {
