@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_USER = "yourdockerhubusername"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -8,28 +12,25 @@ pipeline {
             }
         }
 
-        stage('Show Workspace') {
+        stage('Build Images') {
             steps {
-                sh 'pwd'
-                sh 'ls -la'
+                sh 'docker build -t $DOCKER_USER/dutch-cycle-game-frontend ./frontend'
+                sh 'docker build -t $DOCKER_USER/dutch-cycle-game-backend ./backend'
             }
         }
 
-        stage('Build Frontend Image') {
+        stage('Login to DockerHub') {
             steps {
-                sh 'docker build -t dutch-cycle-game-frontend ./frontend'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh 'echo $PASS | docker login -u $USER --password-stdin'
+                }
             }
         }
 
-        stage('Build Backend Image') {
+        stage('Push Images') {
             steps {
-                sh 'docker build -t dutch-cycle-game-backend ./backend'
-            }
-        }
-
-        stage('List Docker Images') {
-            steps {
-                sh 'docker images'
+                sh 'docker push $DOCKER_USER/dutch-cycle-game-frontend'
+                sh 'docker push $DOCKER_USER/dutch-cycle-game-backend'
             }
         }
     }
