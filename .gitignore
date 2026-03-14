@@ -1,0 +1,21 @@
+# Python virtual environments
+venv/
+.venv/
+backend/venv/
+backend/.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Docker
+*.log
