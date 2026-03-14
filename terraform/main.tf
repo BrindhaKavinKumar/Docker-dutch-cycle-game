@@ -83,8 +83,8 @@ resource "aws_security_group" "sg" {
 
   ingress {
     description = "Grafana"
-    from_port   = 32000
-    to_port     = 32000
+    from_port   = 3000
+    to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
 
